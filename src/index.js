@@ -1,5 +1,5 @@
 import Enigma from './enigma';
-import './enigma.css';
+import './enigma.scss';
 
 const enigma = Enigma.buildDefault();
 
