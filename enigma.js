@@ -100,18 +100,16 @@ class Reflector {
 class Plugboard {
   // A list of letter pairs (max 13). Letters cannot be mapped to themselves.
   // Letters cannot repeat in different pairs.
-  constructor(wiring) {
-    this.wiring = wiring;
+  // Example: ['AB', 'CE']
+  constructor(pairs) {
+    this.pairs = pairs;
   }
 
-  // right to left
-  encode(letter) {
-    return letter;
-  }
+  map(letter) {
+    const pair = this.pairs.find(p => p.includes(letter));
+    if (!pair) { return letter; }
 
-  // left to right
-  decode(letter) {
-    return letter;
+    return pair.replace(letter, '')[0];
   }
 }
 
@@ -129,12 +127,12 @@ class Enigma {
   }
 
   encode(letter) {
-    letter = this.plugboard.encode(letter);
+    letter = this.plugboard.map(letter);
     letter = this.rotorSet.encode(letter);
     letter = this.reflector.reflect(letter);
     letter = this.rotorSet.decode(letter);
 
-    return this.plugboard.decode(letter);
+    return this.plugboard.map(letter);
   }
 }
 
@@ -142,7 +140,7 @@ let rotorIII = new Rotor(RIII, TURNOVER_III);
 let rotorII = new Rotor(RII, TURNOVER_II);
 let rotorI = new Rotor(RI, TURNOVER_I);
 let rotorSet = new RotorSet([rotorIII, rotorII, rotorI]);
-let plugboard = new Plugboard([]);
+let plugboard = new Plugboard(['AB']);
 let reflector = new Reflector(REFLECTOR);
 
 let enigma = new Enigma(rotorSet, plugboard, reflector);
