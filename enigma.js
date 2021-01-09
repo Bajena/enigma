@@ -102,6 +102,9 @@ class Plugboard {
   // Letters cannot repeat in different pairs.
   // Example: ['AB', 'CE']
   constructor(pairs) {
+    if (!Array.isArray(pairs)) { throw 'Please pass an array of strings to plugboard'; }
+    if (new Set(pairs.join()).size !== pairs.join().length) { throw 'Plugboard socket used twice'; }
+
     this.pairs = pairs;
   }
 
