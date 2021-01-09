@@ -6,118 +6,120 @@
   <title>Enigma simulator</title>
 </head>
 <body>
-  <div id="machine-container">
-    <div class="enigma-logo">
-      <img src="logo.jpg">
-    </div>
+  <div id="main-wrapper">
+    <div id="machine-container">
+      <div class="enigma-logo">
+        <img src="logo.jpg">
+      </div>
 
-    <div id="rotors">
-      <div class="rotor">
-        <div class="rotor-window">A</div>
-        <div class="rotor-knob">
-          <div class="rotor-knob-button-wrapper">
-            <button class="rotor-knob-button rotor-knob-up">↑</button>
+      <div id="rotors">
+        <div class="rotor">
+          <div class="rotor-window">A</div>
+          <div class="rotor-knob">
+            <div class="rotor-knob-button-wrapper">
+              <button class="rotor-knob-button rotor-knob-up">↑</button>
+            </div>
+            <div class="rotor-knob-button-wrapper">
+              <button class="rotor-knob-button rotor-knob-down">↓</button>
+            </div>
           </div>
-          <div class="rotor-knob-button-wrapper">
-            <button class="rotor-knob-button rotor-knob-down">↓</button>
+        </div>
+        <div class="rotor">
+          <div class="rotor-window">A</div>
+          <div class="rotor-knob">
+            <div class="rotor-knob-button-wrapper">
+              <button class="rotor-knob-button rotor-knob-up">↑</button>
+            </div>
+            <div class="rotor-knob-button-wrapper">
+              <button class="rotor-knob-button rotor-knob-down">↓</button>
+            </div>
+          </div>
+        </div>
+        <div class="rotor">
+          <div class="rotor-window">A</div>
+          <div class="rotor-knob">
+            <div class="rotor-knob-button-wrapper">
+              <button class="rotor-knob-button rotor-knob-up">↑</button>
+            </div>
+            <div class="rotor-knob-button-wrapper">
+              <button class="rotor-knob-button rotor-knob-down">↓</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="rotor">
-        <div class="rotor-window">A</div>
-        <div class="rotor-knob">
-          <div class="rotor-knob-button-wrapper">
-            <button class="rotor-knob-button rotor-knob-up">↑</button>
-          </div>
-          <div class="rotor-knob-button-wrapper">
-            <button class="rotor-knob-button rotor-knob-down">↓</button>
-          </div>
+
+      <div id="enigma-output">
+        <div id="enigma-output-text">&nbsp;</div>
+      </div>
+
+      <div id="lampboard">
+        <div id="lampboard-row-1">
+          <button class="lampboard-letter">Q</button>
+          <button class="lampboard-letter">W</button>
+          <button class="lampboard-letter">E</button>
+          <button class="lampboard-letter">R</button>
+          <button class="lampboard-letter">T</button>
+          <button class="lampboard-letter">Z</button>
+          <button class="lampboard-letter">U</button>
+          <button class="lampboard-letter">I</button>
+          <button class="lampboard-letter">O</button>
+        </div>
+        <div id="lampboard-row-2">
+          <button class="lampboard-letter">A</button>
+          <button class="lampboard-letter">S</button>
+          <button class="lampboard-letter">D</button>
+          <button class="lampboard-letter">F</button>
+          <button class="lampboard-letter">G</button>
+          <button class="lampboard-letter">H</button>
+          <button class="lampboard-letter">J</button>
+          <button class="lampboard-letter">K</button>
+        </div>
+        <div id="lampboard-row-3">
+          <button class="lampboard-letter">P</button>
+          <button class="lampboard-letter">Y</button>
+          <button class="lampboard-letter">X</button>
+          <button class="lampboard-letter">C</button>
+          <button class="lampboard-letter">V</button>
+          <button class="lampboard-letter">B</button>
+          <button class="lampboard-letter">N</button>
+          <button class="lampboard-letter">M</button>
+          <button class="lampboard-letter">L</button>
         </div>
       </div>
-      <div class="rotor">
-        <div class="rotor-window">A</div>
-        <div class="rotor-knob">
-          <div class="rotor-knob-button-wrapper">
-            <button class="rotor-knob-button rotor-knob-up">↑</button>
-          </div>
-          <div class="rotor-knob-button-wrapper">
-            <button class="rotor-knob-button rotor-knob-down">↓</button>
-          </div>
+
+      <div id="keyboard">
+        <div id="keyboard-row-1" class="keyboard-row">
+          <button class="keyboard-button">Q</button>
+          <button class="keyboard-button">W</button>
+          <button class="keyboard-button">E</button>
+          <button class="keyboard-button">R</button>
+          <button class="keyboard-button">T</button>
+          <button class="keyboard-button">Z</button>
+          <button class="keyboard-button">U</button>
+          <button class="keyboard-button">I</button>
+          <button class="keyboard-button">O</button>
         </div>
-      </div>
-    </div>
-
-    <div id="enigma-output">
-      <div id="enigma-output-text">&nbsp;</div>
-    </div>
-
-    <div id="lampboard">
-      <div id="lampboard-row-1">
-        <button class="lampboard-letter">Q</button>
-        <button class="lampboard-letter">W</button>
-        <button class="lampboard-letter">E</button>
-        <button class="lampboard-letter">R</button>
-        <button class="lampboard-letter">T</button>
-        <button class="lampboard-letter">Z</button>
-        <button class="lampboard-letter">U</button>
-        <button class="lampboard-letter">I</button>
-        <button class="lampboard-letter">O</button>
-      </div>
-      <div id="lampboard-row-2">
-        <button class="lampboard-letter">A</button>
-        <button class="lampboard-letter">S</button>
-        <button class="lampboard-letter">D</button>
-        <button class="lampboard-letter">F</button>
-        <button class="lampboard-letter">G</button>
-        <button class="lampboard-letter">H</button>
-        <button class="lampboard-letter">J</button>
-        <button class="lampboard-letter">K</button>
-      </div>
-      <div id="lampboard-row-3">
-        <button class="lampboard-letter">P</button>
-        <button class="lampboard-letter">Y</button>
-        <button class="lampboard-letter">X</button>
-        <button class="lampboard-letter">C</button>
-        <button class="lampboard-letter">V</button>
-        <button class="lampboard-letter">B</button>
-        <button class="lampboard-letter">N</button>
-        <button class="lampboard-letter">M</button>
-        <button class="lampboard-letter">L</button>
-      </div>
-    </div>
-
-    <div id="keyboard">
-      <div id="keyboard-row-1" class="keyboard-row">
-        <button class="keyboard-button">Q</button>
-        <button class="keyboard-button">W</button>
-        <button class="keyboard-button">E</button>
-        <button class="keyboard-button">R</button>
-        <button class="keyboard-button">T</button>
-        <button class="keyboard-button">Z</button>
-        <button class="keyboard-button">U</button>
-        <button class="keyboard-button">I</button>
-        <button class="keyboard-button">O</button>
-      </div>
-      <div id="keyboard-row-2" class="keyboard-row">
-        <button class="keyboard-button">A</button>
-        <button class="keyboard-button">S</button>
-        <button class="keyboard-button">D</button>
-        <button class="keyboard-button">F</button>
-        <button class="keyboard-button">G</button>
-        <button class="keyboard-button">H</button>
-        <button class="keyboard-button">J</button>
-        <button class="keyboard-button">K</button>
-      </div>
-      <div id="keyboard-row-3" class="keyboard-row">
-        <button class="keyboard-button">P</button>
-        <button class="keyboard-button">Y</button>
-        <button class="keyboard-button">X</button>
-        <button class="keyboard-button">C</button>
-        <button class="keyboard-button">V</button>
-        <button class="keyboard-button">B</button>
-        <button class="keyboard-button">N</button>
-        <button class="keyboard-button">M</button>
-        <button class="keyboard-button">L</button>
+        <div id="keyboard-row-2" class="keyboard-row">
+          <button class="keyboard-button">A</button>
+          <button class="keyboard-button">S</button>
+          <button class="keyboard-button">D</button>
+          <button class="keyboard-button">F</button>
+          <button class="keyboard-button">G</button>
+          <button class="keyboard-button">H</button>
+          <button class="keyboard-button">J</button>
+          <button class="keyboard-button">K</button>
+        </div>
+        <div id="keyboard-row-3" class="keyboard-row">
+          <button class="keyboard-button">P</button>
+          <button class="keyboard-button">Y</button>
+          <button class="keyboard-button">X</button>
+          <button class="keyboard-button">C</button>
+          <button class="keyboard-button">V</button>
+          <button class="keyboard-button">B</button>
+          <button class="keyboard-button">N</button>
+          <button class="keyboard-button">M</button>
+          <button class="keyboard-button">L</button>
+        </div>
       </div>
     </div>
   </div>
@@ -130,9 +132,15 @@
       lamp.classList.add("active");
     }
 
+    function lampOff() {
+      const activeLamp = document.querySelector('.lampboard-letter.active');
+      if (!activeLamp) { return; }
+      activeLamp.classList.remove("active");
+    }
+
     function addToOutput(outputLetter) {
       const textDiv = document.getElementById("enigma-output-text");
-      textDiv.innerText += outputLetter;
+      textDiv.innerHTML += outputLetter;
     }
 
     function refreshRotorValues() {
@@ -157,30 +165,55 @@
       refreshRotorValues();
     }
 
+    function writeLetter(letter) {
+      const outputLetter = enigma.write(letter);
+      lampOn(outputLetter);
+      addToOutput(outputLetter);
+      refreshRotorValues();
+    }
+
     document.querySelectorAll(".keyboard-button").forEach(b => {
       b.addEventListener("mousedown", (e) => {
-        const outputLetter = enigma.write(e.target.innerText);
-        lampOn(outputLetter);
-        addToOutput(outputLetter);
-        refreshRotorValues();
+        writeLetter(e.target.innerText);
+        e.target.blur();
       });
     });
 
     document.addEventListener("mouseup", (e) => {
-      const activeLamp = document.querySelector('.lampboard-letter.active');
-      if (!activeLamp) { return; }
-      activeLamp.classList.remove("active");
+      lampOff();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.repeat) {
+        return;
+      }
+
+      if (e.code === "Space") {
+        addToOutput("&nbsp;");
+        return;
+      }
+
+      const letter = e.key.toUpperCase();
+      if (letter.length === 1 && letter.charCodeAt() >= 65 && letter.charCodeAt() <= 90) {
+        writeLetter(letter);
+      }
+    });
+
+    document.addEventListener("keyup", (e) => {
+      lampOff();
     });
 
     document.querySelectorAll(".rotor-knob-up").forEach(b => {
       b.addEventListener("click", (e) => {
         onRotorUp(e.target);
+        e.target.blur();
       });
     });
 
     document.querySelectorAll(".rotor-knob-down").forEach(b => {
       b.addEventListener("click", (e) => {
         onRotorDown(e.target);
+        e.target.blur();
       });
     });
   </script>

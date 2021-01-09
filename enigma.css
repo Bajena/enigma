@@ -2,6 +2,11 @@ body {
   background: rgb(37 37 37);
 }
 
+#main-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 #machine-container {
   width: 420px;
   border: 14px solid #795548;
