@@ -132,6 +132,17 @@ class Plugboard {
 }
 
 class Enigma {
+  static buildDefault() {
+    let rotorIII = new Rotor(RIII, TURNOVER_III);
+    let rotorII = new Rotor(RII, TURNOVER_II);
+    let rotorI = new Rotor(RI, TURNOVER_I);
+    let rotorSet = new RotorSet([rotorIII, rotorII, rotorI]);
+    let plugboard = new Plugboard(['AB']);
+    let reflector = new Reflector(REFLECTOR);
+
+    return new Enigma(rotorSet, plugboard, reflector);
+  }
+
   constructor(rotorSet, plugboard, reflector) {
     this.rotorSet = rotorSet;
     this.plugboard = plugboard;
@@ -154,11 +165,4 @@ class Enigma {
   }
 }
 
-let rotorIII = new Rotor(RIII, TURNOVER_III);
-let rotorII = new Rotor(RII, TURNOVER_II);
-let rotorI = new Rotor(RI, TURNOVER_I);
-let rotorSet = new RotorSet([rotorIII, rotorII, rotorI]);
-let plugboard = new Plugboard(['AB']);
-let reflector = new Reflector(REFLECTOR);
-
-let enigma = new Enigma(rotorSet, plugboard, reflector);
+export { Enigma as default };
