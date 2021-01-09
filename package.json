@@ -7,7 +7,8 @@
   "author": "Jan Bajena <bajena3@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "watch": "webpack --watch"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
