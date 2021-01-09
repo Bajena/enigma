@@ -57,9 +57,8 @@ class Rotor {
 
 class RotorSet {
   // rotors Array<Rotor> - rotors, starting from rightmost (physically)
-  constructor(rotors, initialPositions) {
+  constructor(rotors) {
     this.rotors = rotors;
-    // set initial rotor positions
   }
 
   // right to left
