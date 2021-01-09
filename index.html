@@ -2,16 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <link rel="stylesheet" href="enigma.css">
   <title>Enigma simulator</title>
 </head>
 <body>
-  <div>
-    <h1>Enigma</h1>
-  </div>
-
   <div id="machine-container">
+    <div class="enigma-logo">
+      <img src="logo.jpg">
+    </div>
+
+    <div id="rotors">
+      <div class="rotor">
+        <div class="rotor-window">A</div>
+        <div class="rotor-knob">
+          <div class="rotor-knob-button-wrapper">
+            <button class="rotor-knob-button rotor-knob-up">↑</button>
+          </div>
+          <div class="rotor-knob-button-wrapper">
+            <button class="rotor-knob-button rotor-knob-down">↓</button>
+          </div>
+        </div>
+      </div>
+      <div class="rotor">
+        <div class="rotor-window">A</div>
+        <div class="rotor-knob">
+          <div class="rotor-knob-button-wrapper">
+            <button class="rotor-knob-button rotor-knob-up">↑</button>
+          </div>
+          <div class="rotor-knob-button-wrapper">
+            <button class="rotor-knob-button rotor-knob-down">↓</button>
+          </div>
+        </div>
+      </div>
+      <div class="rotor">
+        <div class="rotor-window">A</div>
+        <div class="rotor-knob">
+          <div class="rotor-knob-button-wrapper">
+            <button class="rotor-knob-button rotor-knob-up">↑</button>
+          </div>
+          <div class="rotor-knob-button-wrapper">
+            <button class="rotor-knob-button rotor-knob-down">↓</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="enigma-output">
+      <div id="enigma-output-text">&nbsp;</div>
+    </div>
+
     <div id="lampboard">
       <div id="lampboard-row-1">
         <button class="lampboard-letter">Q</button>
@@ -48,7 +87,7 @@
     </div>
 
     <div id="keyboard">
-      <div id="keyboard-row-1">
+      <div id="keyboard-row-1" class="keyboard-row">
         <button class="keyboard-button">Q</button>
         <button class="keyboard-button">W</button>
         <button class="keyboard-button">E</button>
@@ -59,7 +98,7 @@
         <button class="keyboard-button">I</button>
         <button class="keyboard-button">O</button>
       </div>
-      <div id="keyboard-row-2">
+      <div id="keyboard-row-2" class="keyboard-row">
         <button class="keyboard-button">A</button>
         <button class="keyboard-button">S</button>
         <button class="keyboard-button">D</button>
@@ -69,7 +108,7 @@
         <button class="keyboard-button">J</button>
         <button class="keyboard-button">K</button>
       </div>
-      <div id="keyboard-row-3">
+      <div id="keyboard-row-3" class="keyboard-row">
         <button class="keyboard-button">P</button>
         <button class="keyboard-button">Y</button>
         <button class="keyboard-button">X</button>
@@ -84,5 +123,66 @@
   </div>
 
   <script src="enigma.js"></script>
+  <script>
+    function lampOn(outputLetter) {
+      const lamp = Array.from(document.querySelectorAll('.lampboard-letter'))
+        .find(el => el.innerText === outputLetter);
+      lamp.classList.add("active");
+    }
+
+    function addToOutput(outputLetter) {
+      const textDiv = document.getElementById("enigma-output-text");
+      textDiv.innerText += outputLetter;
+    }
+
+    function refreshRotorValues() {
+      const rotors = enigma.rotorSet.rotors;
+      const htmlRotors = Array.from(document.querySelectorAll('.rotor-window')).reverse();
+
+      // Update rotors from right to left
+      for (let i = 0; i < rotors.length; i++) {
+        htmlRotors[i].innerText = rotors[i].getCurrentLetter();
+      }
+    }
+
+    function onRotorUp(button) {
+      const rotorIndex = Array.from(document.querySelectorAll('.rotor-knob-up')).reverse().indexOf(button);
+      enigma.rotorSet.rotors[rotorIndex].turnUp();
+      refreshRotorValues();
+    }
+
+    function onRotorDown(button) {
+      const rotorIndex = Array.from(document.querySelectorAll('.rotor-knob-down')).reverse().indexOf(button);
+      enigma.rotorSet.rotors[rotorIndex].turnDown();
+      refreshRotorValues();
+    }
+
+    document.querySelectorAll(".keyboard-button").forEach(b => {
+      b.addEventListener("mousedown", (e) => {
+        const outputLetter = enigma.write(e.target.innerText);
+        lampOn(outputLetter);
+        addToOutput(outputLetter);
+        refreshRotorValues();
+      });
+    });
+
+    document.addEventListener("mouseup", (e) => {
+      const activeLamp = document.querySelector('.lampboard-letter.active');
+      if (!activeLamp) { return; }
+      activeLamp.classList.remove("active");
+    });
+
+    document.querySelectorAll(".rotor-knob-up").forEach(b => {
+      b.addEventListener("click", (e) => {
+        onRotorUp(e.target);
+      });
+    });
+
+    document.querySelectorAll(".rotor-knob-down").forEach(b => {
+      b.addEventListener("click", (e) => {
+        onRotorDown(e.target);
+      });
+    });
+  </script>
 </body>
 </html>

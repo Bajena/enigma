@@ -2,12 +2,78 @@ body {
   background: rgb(37 37 37);
 }
 
+#machine-container {
+  width: 420px;
+  border: 14px solid #795548;
+  padding: 20px;
+}
+
+.enigma-logo {
+  position: relative;
+  float: right;
+  top: 5px;
+}
+
+.enigma-logo img {
+  width: 120px;
+}
+
+#enigma-output {
+  display: none;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+
+#enigma-output-text {
+  background: white;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  min-width: 10px;
+  font-family: "Courier New", monospace;
+  overflow-x: auto;
+  text-overflow: unset;
+}
+
+#rotors {
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+.rotor {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.rotor-window {
+  display: inline-block;
+  background: #808080;
+  color: white;
+  border: 2px silver solid;
+  padding: 8px;
+  width: 11px;
+  height: 20px;
+  text-align: center;
+  box-shadow: inset 0px 18px 6px -12px #191919, inset 0px -18px 6px -12px #191919;
+}
+
+.rotor-knob {
+  display: inline-block;
+  position: relative;
+  top: 11px;
+}
+
+.rotor-knob-button {
+  height: 21px;
+}
+
 .lampboard-letter {
   border-radius: 20px;
   padding: 3px;
   width: 30px;
   height: 30px;
-  margin: 5px;
+  margin: 6px;
   background: black;
   color: white;
   border-color: white;
@@ -63,10 +129,16 @@ body {
   border-style: solid;
 }
 
+.keyboard-row {
+  border-top: 2px solid black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 #keyboard-row-1 {
-  margin-left: 10px;
+  padding-left: 10px;
 }
 
 #keyboard-row-2 {
-  margin-left: 26px;
+  padding-left: 26px;
 }

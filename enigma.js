@@ -29,16 +29,28 @@ class Rotor {
   // returns true if turnover was reached before rotation
   rotate() {
     let turnover = this.currentIndex == this.turnoverIndex;
-    this.currentIndex = (this.currentIndex + 1) % 26;
+    this.turnUp();
 
     return turnover;
+  }
+
+  turnUp() {
+    this.currentIndex = this.moduloAlphabet(this.currentIndex + 1);
+  }
+
+  turnDown() {
+    this.currentIndex = this.moduloAlphabet(this.currentIndex - 1);
+  }
+
+  getCurrentLetter() {
+    return indexToLetter(this.currentIndex);
   }
 
   // right to left
   encode(letter) {
     var rightIndex = letterToIndex(letter);
-    var afterWiring = letterToIndex(this.wiring[(rightIndex + this.currentIndex) % 26]);
-    var leftIndex = (afterWiring - this.currentIndex + 26) % 26;
+    var afterWiring = letterToIndex(this.wiring[this.moduloAlphabet(rightIndex + this.currentIndex)]);
+    var leftIndex = this.moduloAlphabet(afterWiring - this.currentIndex);
 
     return indexToLetter(leftIndex);
   }
@@ -47,11 +59,15 @@ class Rotor {
   decode(letter) {
     var leftIndex = letterToIndex(letter);
     var afterWiring = this.wiring.indexOf(
-      indexToLetter((leftIndex + this.currentIndex) % 26)
+      indexToLetter(this.moduloAlphabet(leftIndex + this.currentIndex))
     );
-    var rightIndex = (afterWiring - this.currentIndex + 26) % 26;
+    var rightIndex = this.moduloAlphabet(afterWiring - this.currentIndex);
 
     return indexToLetter(rightIndex);
+  }
+
+  moduloAlphabet(index) {
+    return (index + 26) % 26;
   }
 }
 
