@@ -2,14 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://unpkg.com/papercss@1.7.0/dist/paper.min.css">
+
+  <link rel="stylesheet" href="enigma.css">
   <title>Enigma simulator</title>
 </head>
 <body>
-  <div class="paper container">
+  <div>
     <h1>Enigma</h1>
+  </div>
+
+  <div id="machine-container">
+    <div id="lampboard">
+      <div id="lampboard-row-1">
+        <button class="lampboard-letter">Q</button>
+        <button class="lampboard-letter">W</button>
+        <button class="lampboard-letter">E</button>
+        <button class="lampboard-letter">R</button>
+        <button class="lampboard-letter">T</button>
+        <button class="lampboard-letter">Z</button>
+        <button class="lampboard-letter">U</button>
+        <button class="lampboard-letter">I</button>
+        <button class="lampboard-letter">O</button>
+      </div>
+      <div id="lampboard-row-2">
+        <button class="lampboard-letter">A</button>
+        <button class="lampboard-letter">S</button>
+        <button class="lampboard-letter">D</button>
+        <button class="lampboard-letter">F</button>
+        <button class="lampboard-letter">G</button>
+        <button class="lampboard-letter">H</button>
+        <button class="lampboard-letter">J</button>
+        <button class="lampboard-letter">K</button>
+      </div>
+      <div id="lampboard-row-3">
+        <button class="lampboard-letter">P</button>
+        <button class="lampboard-letter">Y</button>
+        <button class="lampboard-letter">X</button>
+        <button class="lampboard-letter">C</button>
+        <button class="lampboard-letter">V</button>
+        <button class="lampboard-letter">B</button>
+        <button class="lampboard-letter">N</button>
+        <button class="lampboard-letter">M</button>
+        <button class="lampboard-letter">L</button>
+      </div>
+    </div>
+
+    <div id="keyboard">
+      <div id="keyboard-row-1">
+        <button class="keyboard-button">Q</button>
+        <button class="keyboard-button">W</button>
+        <button class="keyboard-button">E</button>
+        <button class="keyboard-button">R</button>
+        <button class="keyboard-button">T</button>
+        <button class="keyboard-button">Z</button>
+        <button class="keyboard-button">U</button>
+        <button class="keyboard-button">I</button>
+        <button class="keyboard-button">O</button>
+      </div>
+      <div id="keyboard-row-2">
+        <button class="keyboard-button">A</button>
+        <button class="keyboard-button">S</button>
+        <button class="keyboard-button">D</button>
+        <button class="keyboard-button">F</button>
+        <button class="keyboard-button">G</button>
+        <button class="keyboard-button">H</button>
+        <button class="keyboard-button">J</button>
+        <button class="keyboard-button">K</button>
+      </div>
+      <div id="keyboard-row-3">
+        <button class="keyboard-button">P</button>
+        <button class="keyboard-button">Y</button>
+        <button class="keyboard-button">X</button>
+        <button class="keyboard-button">C</button>
+        <button class="keyboard-button">V</button>
+        <button class="keyboard-button">B</button>
+        <button class="keyboard-button">N</button>
+        <button class="keyboard-button">M</button>
+        <button class="keyboard-button">L</button>
+      </div>
+    </div>
   </div>
 
   <script src="enigma.js"></script>

@@ -1,0 +1,72 @@
+body {
+  background: rgb(37 37 37);
+}
+
+.lampboard-letter {
+  border-radius: 20px;
+  padding: 3px;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  background: black;
+  color: white;
+  border-color: white;
+  border-width: 0px;
+  border-image: none;
+  border-style: solid;
+  color: gray;
+}
+
+.lampboard-letter.active {
+  color: #FC0;
+  text-shadow: #FC0 2px 0px 3px;
+}
+
+.lampboard-letter:focus {
+  outline: none;
+}
+
+#lampboard-row-1 {
+  margin-left: 10px;
+}
+
+#lampboard-row-2 {
+  margin-left: 26px;
+}
+
+#lampboard {
+  margin-bottom: 20px;
+}
+
+.keyboard-button:active {
+  top: 3px;
+  left: 2px;
+  position: relative;
+}
+
+.keyboard-button:focus {
+  outline: none;
+}
+
+.keyboard-button {
+  border-radius: 20px;
+  padding: 3px;
+  width: 32px;
+  height: 32px;
+  margin: 5px;
+  background: black;
+  color: white;
+  border-color: white;
+  border-width: 2px;
+  box-shadow: 4px -2px 1px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+  border-image: none;
+  border-style: solid;
+}
+
+#keyboard-row-1 {
+  margin-left: 10px;
+}
+
+#keyboard-row-2 {
+  margin-left: 26px;
+}
