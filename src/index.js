@@ -139,7 +139,9 @@ class PlugboardSocket {
     this.active = true;
     this.element.classList.add("active");
 
-    const mouseArrow = PlugboardSocket.firstActiveSocket.mouseArrow;
+    const firstSocket = PlugboardSocket.firstActiveSocket;
+
+    const mouseArrow = firstSocket.mouseArrow;
 
     const arrow = arrowCreate({
       ...mouseArrow.config,
@@ -147,11 +149,16 @@ class PlugboardSocket {
     });
     document.body.appendChild(arrow.node);
 
-    PlugboardSocket.firstActiveSocket.mouseArrow.clear();
-    PlugboardSocket.firstActiveSocket.mouseArrow = null;
+    firstSocket.mouseArrow.clear();
+    firstSocket.mouseArrow = null;
 
+    this.enigma.plugboard.addPair(firstSocket.getLetter() + this.getLetter());
 
     PlugboardSocket.firstActiveSocket = null;
+  }
+
+  getLetter() {
+    return this.element.parentElement.getElementsByClassName("plugboard-item--letter")[0].innerText
   }
 }
 PlugboardSocket.firstActiveSocket = null;

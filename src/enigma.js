@@ -118,9 +118,19 @@ class Plugboard {
   // Example: ['AB', 'CE']
   constructor(pairs) {
     if (!Array.isArray(pairs)) { throw 'Please pass an array of strings to plugboard'; }
-    if (new Set(pairs.join()).size !== pairs.join().length) { throw 'Plugboard socket used twice'; }
+    if (!this.isValidConfig(pairs)) { throw 'Plugboard socket used twice'; }
 
     this.pairs = pairs;
+  }
+
+  addPair(pair) {
+    const newPairs = this.pairs.concat(pair);
+    if (!this.isValidConfig(newPairs)) {
+      console.log('Pair invalid', pair, newPairs, this.pairs);
+      throw 'Plugboard socket used twice';
+    }
+
+    this.pairs = newPairs;
   }
 
   map(letter) {
@@ -128,6 +138,10 @@ class Plugboard {
     if (!pair) { return letter; }
 
     return pair.replace(letter, '')[0];
+  }
+
+  isValidConfig(pairs) {
+    return new Set(pairs.join('')).size === pairs.join('').length
   }
 }
 
