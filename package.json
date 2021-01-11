@@ -21,5 +21,6 @@
     "webpack-cli": "^4.3.1"
   },
   "dependencies": {
+    "arrows-svg": "^1.5.1"
   }
 }

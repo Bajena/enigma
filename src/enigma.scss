@@ -8,7 +8,7 @@ body {
 }
 
 #machine-container {
-  width: 420px;
+  width: 800px;
   border: 14px solid #795548;
   padding: 20px;
 }
@@ -74,10 +74,11 @@ body {
 }
 
 .lampboard-letter {
-  border-radius: 20px;
+  border-radius: 35px;
   padding: 3px;
-  width: 30px;
-  height: 30px;
+  width: 70px;
+  height: 70px;
+  font-size: 20px;
   margin: 6px;
   background: black;
   color: white;
@@ -120,10 +121,11 @@ body {
 }
 
 .keyboard-button {
-  border-radius: 20px;
+  border-radius: 35px;
   padding: 3px;
-  width: 32px;
-  height: 32px;
+  width: 70px;
+  height: 70px;
+  font-size: 20px;
   margin: 5px;
   background: black;
   color: white;
@@ -147,3 +149,90 @@ body {
 #keyboard-row-2 {
   padding-left: 26px;
 }
+
+#plugboard {
+  border-top: 5px solid #795548;
+  margin-top: 10px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  .plugboard-item {
+    height: 100px;
+    position: relative;
+    top: -20px;
+    display: inline-block;
+    margin-right: 20px;
+
+    &--letter {
+      color: #e2bf03;
+      display: inline-block;
+    }
+
+    &--socket {
+      display: inline-block;
+      position: relative;
+      top: 32px;
+
+      &--top {
+        height: 20px;
+        margin-bottom: 10px;
+        width: 20px;
+        background: #000;
+        border-radius: 15px;
+        border: 5px solid silver;
+        margin-bottom: 10px;
+      }
+
+      &--bottom {
+        height: 15px;
+        width: 15px;
+        background: black;
+        border-radius: 15px;
+        border: 8px solid silver;
+      }
+
+      &--plug {
+        display: none;
+        width: 32px;
+        height: 77px;
+        background: #000;
+        position: absolute;
+        top: -3px;
+        left: -1px;
+        border-radius: 17px;
+        border: 1px solid silver;
+
+        &--dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 5px;
+          background: #fff;
+          position: relative;
+          top: calc(50% - 5px);
+          left: calc(50% - 5px);
+        }
+      }
+
+      &:hover {
+        .plugboard-item--socket--plug {
+          opacity: 0.8;
+          display: block;
+        }
+      }
+
+      &.active {
+        .plugboard-item--socket--plug {
+          display: block;
+        }
+      }
+    }
+
+    &--number {
+      color: #e2bf03;
+      display: inline-block;
+    }
+  }
+}
+

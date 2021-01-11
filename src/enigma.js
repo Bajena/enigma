@@ -137,7 +137,7 @@ class Enigma {
     let rotorII = new Rotor(RII, TURNOVER_II);
     let rotorI = new Rotor(RI, TURNOVER_I);
     let rotorSet = new RotorSet([rotorIII, rotorII, rotorI]);
-    let plugboard = new Plugboard(['AB']);
+    let plugboard = new Plugboard([]);
     let reflector = new Reflector(REFLECTOR);
 
     return new Enigma(rotorSet, plugboard, reflector);
@@ -165,4 +165,4 @@ class Enigma {
   }
 }
 
-export { Enigma as default };
+export { Enigma as default, letterToIndex };

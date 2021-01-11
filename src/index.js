@@ -1,5 +1,7 @@
-import Enigma from './enigma';
+import arrowCreate, { DIRECTION } from 'arrows-svg'
+import Enigma, { letterToIndex } from './enigma';
 import './enigma.scss';
+import './arrows.scss';
 
 const enigma = Enigma.buildDefault();
 
@@ -49,6 +51,97 @@ function writeLetter(letter) {
   refreshRotorValues();
 }
 
+class MouseArrow {
+  constructor(fromElement) {
+    const mouseDiv = document.createElement("div");
+    mouseDiv.style.cssText = 'position:fixed;opacity:0.0;';
+    document.body.appendChild(mouseDiv);
+
+    document.body.addEventListener("mousemove", (e) => {
+      mouseDiv.style.top = e.pageY + "px";
+      mouseDiv.style.left = e.pageX + "px";
+    });
+
+    this.arrow = arrowCreate({
+      className: 'arrow',
+      from: {
+        direction: DIRECTION.TOP,
+        node: fromElement,
+        translation: [-0.5, -1],
+      },
+      to: {
+        direction: DIRECTION.RIGHT,
+        node: mouseDiv,
+        translation: [0.0, 0],
+      },
+    });
+
+    document.body.appendChild(this.arrow.node);
+  }
+
+  clear() {
+    this.arrow.clear();
+  }
+}
+
+class PlugboardSocket {
+  constructor(enigma, element) {
+    this.enigma = enigma;
+    this.element = element;
+    this.active = false;
+
+    this.setupEventHandlers();
+  }
+
+  static firstActiveSocket = null;
+
+  setupEventHandlers() {
+    this.element.addEventListener("click", (e) => {
+      if (PlugboardSocket.firstActiveSocket === this) {
+        return this.resetConnection();
+      }
+
+      if (!PlugboardSocket.firstActiveSocket) {
+        return this.startConnection();
+      }
+
+      this.endConnection();
+    });
+  }
+
+  resetConnection() {
+    this.active = false;
+    PlugboardSocket.firstActiveSocket = null;
+    this.mouseArrow.clear();
+  }
+
+  startConnection() {
+    this.active = true;
+    this.element.classList.add("active");
+
+    PlugboardSocket.firstActiveSocket = this;
+    this.mouseArrow = new MouseArrow(this.element);
+  }
+}
+
+function setupPlugboardItems() {
+  var item = document.querySelector(".plugboard-item");
+  var letters = "WERTZUIOASDFGHJKPYXCVBNML";
+
+  Array.from(letters).forEach(l => {
+    var newNode = item.cloneNode(true);
+    newNode.querySelector(".plugboard-item--letter").innerText = l;
+    newNode.querySelector(".plugboard-item--number").innerText = letterToIndex(l);
+    document.querySelector(".plugboard-row").appendChild(newNode);
+  });
+
+  document.querySelectorAll(".plugboard-item--socket").forEach(s => {
+    new PlugboardSocket(enigma, s);
+  });
+}
+
+setupPlugboardItems();
+
 document.querySelectorAll(".keyboard-button").forEach(b => {
   b.addEventListener("mousedown", (e) => {
     writeLetter(e.target.innerText);
@@ -93,3 +186,11 @@ document.querySelectorAll(".rotor-knob-down").forEach(b => {
     e.target.blur();
   });
 });
+
+document.querySelectorAll(".rotor-knob-down").forEach(b => {
+  b.addEventListener("click", (e) => {
+    onRotorDown(e.target);
+    e.target.blur();
+  });
+});
+

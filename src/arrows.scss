@@ -1,0 +1,15 @@
+.arrow {
+  pointer-events: none;
+}
+
+.arrow__path {
+  stroke: gray;
+  fill: transparent;
+  stroke-width: 3px;
+}
+
+.arrow__head line {
+  display: none;
+  stroke: #fff;
+  stroke-width: 3px;
+}
