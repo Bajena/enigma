@@ -1,9 +1,21 @@
 .arrow {
   pointer-events: none;
+
+  &.arrow-1 .arrow__path {
+    stroke: red;
+  }
+
+  &.arrow-2 .arrow__path {
+    stroke: blue;
+  }
+
+  &.arrow-3 .arrow__path {
+    stroke: green;
+  }
 }
 
 .arrow__path {
-  stroke: gray;
+  // stroke: gray;
   fill: transparent;
   stroke-width: 3px;
 }

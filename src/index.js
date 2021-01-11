@@ -5,6 +5,12 @@ import './arrows.scss';
 
 const enigma = Enigma.buildDefault();
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function lampOn(outputLetter) {
   const lamp = Array.from(document.querySelectorAll('.lampboard-letter'))
     .find(el => el.innerText === outputLetter);
@@ -54,16 +60,16 @@ function writeLetter(letter) {
 class MouseArrow {
   constructor(fromElement) {
     const mouseDiv = document.createElement("div");
+    this.mouseDiv = mouseDiv;
     mouseDiv.style.cssText = 'position:fixed;opacity:0.0;';
+    this.mouseDiv.style.top = (fromElement.getBoundingClientRect().top + document.body.scrollTop) + "px";
+    this.mouseDiv.style.left = (fromElement.getBoundingClientRect().left + document.body.scrollLeft) + "px";
     document.body.appendChild(mouseDiv);
 
-    document.body.addEventListener("mousemove", (e) => {
-      mouseDiv.style.top = e.pageY + "px";
-      mouseDiv.style.left = e.pageX + "px";
-    });
+    document.body.addEventListener("mousemove", this.onMouseMove.bind(this));
 
-    this.arrow = arrowCreate({
-      className: 'arrow',
+    this.config = {
+      className: 'arrow-' + getRandomInt(1, 3) + ' arrow',
       from: {
         direction: DIRECTION.TOP,
         node: fromElement,
@@ -74,13 +80,21 @@ class MouseArrow {
         node: mouseDiv,
         translation: [0.0, 0],
       },
-    });
+    };
+    this.arrow = arrowCreate(this.config);
 
     document.body.appendChild(this.arrow.node);
   }
 
+  onMouseMove(e) {
+    this.mouseDiv.style.top = e.pageY + "px";
+    this.mouseDiv.style.left = e.pageX + "px";
+  }
+
   clear() {
+    document.body.removeEventListener("mousemove", this.onMouseMove.bind(this));
     this.arrow.clear();
+    this.mouseDiv.remove();
   }
 }
 
@@ -92,8 +106,6 @@ class PlugboardSocket {
 
     this.setupEventHandlers();
   }
-
-  static firstActiveSocket = null;
 
   setupEventHandlers() {
     this.element.addEventListener("click", (e) => {
@@ -122,7 +134,27 @@ class PlugboardSocket {
     PlugboardSocket.firstActiveSocket = this;
     this.mouseArrow = new MouseArrow(this.element);
   }
+
+  endConnection() {
+    this.active = true;
+    this.element.classList.add("active");
+
+    const mouseArrow = PlugboardSocket.firstActiveSocket.mouseArrow;
+
+    const arrow = arrowCreate({
+      ...mouseArrow.config,
+      to: { ...mouseArrow.config.to, node: this.element }
+    });
+    document.body.appendChild(arrow.node);
+
+    PlugboardSocket.firstActiveSocket.mouseArrow.clear();
+    PlugboardSocket.firstActiveSocket.mouseArrow = null;
+
+
+    PlugboardSocket.firstActiveSocket = null;
+  }
 }
+PlugboardSocket.firstActiveSocket = null;
 
 function setupPlugboardItems() {
   var item = document.querySelector(".plugboard-item");
@@ -131,7 +163,7 @@ function setupPlugboardItems() {
   Array.from(letters).forEach(l => {
     var newNode = item.cloneNode(true);
     newNode.querySelector(".plugboard-item--letter").innerText = l;
-    newNode.querySelector(".plugboard-item--number").innerText = letterToIndex(l);
+    newNode.querySelector(".plugboard-item--number").innerText = letterToIndex(l) + 1;
     document.querySelector(".plugboard-row").appendChild(newNode);
   });
 
