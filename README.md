@@ -1,6 +1,6 @@
 # Enigma simulator
 
-[Enigma](https://en.wikipedia.org/wiki/Enigma_machine) simulator implemented in JavaScript simply for fun.
+This repository contains [Enigma](https://en.wikipedia.org/wiki/Enigma_machine) cipher device simulator implemented in JavaScript simply for fun.
 It's preconfigured to use rotors (I,II,III) and reflector (B) from the original 1939 Enigma.
 
 You can play with it yourself at https://bajena.github.io/enigma/index.html.
